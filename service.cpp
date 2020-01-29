@@ -12,7 +12,10 @@ Service::~Service() {
 
 void Service::add(string str)
 {
-    rep->tasks.push_back(new Task(str, (*(--rep->tasks.end()))->getID()+1));
+    if (!rep->tasks.empty())
+        rep->tasks.push_back(new Task(str, (*(--rep->tasks.end()))->getID()+1));
+    else
+        rep->tasks.push_back(new Task(str, 1));
 }
 
 void Service::deleteByID(int id)
